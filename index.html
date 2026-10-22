@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Envelope Letter</title>
+  <title>Happy 1 Month Anniversary</title>
   <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -22,15 +23,25 @@
       --err: #d63031;
 
       /* ความกว้างซอง: ย่อ/ขยายตามจอ ทั้งด้านกว้างและด้านสูง */
-      --w: min(86vw, 440px, calc((100vh - 110px) / 1.5));
+      --w: min(86vw, 440px, calc((100vh - 110px) / 1.65));
     }
+
     @supports (height: 100dvh) {
-      :root { --w: min(86vw, 440px, calc((100dvh - 110px) / 1.5)); }
+      :root {
+        --w: min(86vw, 440px, calc((100dvh - 110px) / 1.65));
+      }
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html, body { height: 100%; }
+    html,
+    body {
+      height: 100%;
+    }
 
     body {
       min-height: 100vh;
@@ -40,6 +51,7 @@
       justify-content: center;
       padding: 16px;
       background: radial-gradient(circle at 50% 40%, var(--bg2), var(--bg1));
+
       font-family: 'Itim', cursive;
       overflow: hidden;
       -webkit-tap-highlight-color: transparent;
@@ -57,6 +69,7 @@
       z-index: 20;
       transition: opacity .6s ease 1.7s, visibility 0s linear 2.3s;
     }
+
     .unlocked .locker-screen {
       opacity: 0;
       visibility: hidden;
@@ -66,11 +79,19 @@
       position: relative;
       width: min(100%, 360px);
       perspective: 1200px;
-      animation: drop-in .8s cubic-bezier(.22,1,.36,1) both;
+      animation: drop-in .8s cubic-bezier(.22, 1, .36, 1) both;
     }
+
     @keyframes drop-in {
-      from { opacity: 0; transform: translateY(-40px) scale(.95); }
-      to   { opacity: 1; transform: none; }
+      from {
+        opacity: 0;
+        transform: translateY(-40px) scale(.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
 
     /* ด้านในตู้ (เห็นตอนประตูเปิด) */
@@ -79,19 +100,108 @@
       inset: 0;
       border-radius: 16px;
       background: radial-gradient(circle at 50% 55%, #ff9aa8 0%, #6b2e3a 55%, #2d1a20 100%);
-      box-shadow: inset 0 0 30px rgba(0,0,0,.6);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, .6);
       display: grid;
       place-items: center;
       font-size: 72px;
     }
+
     .locker-inside span {
       transform: scale(.6);
       opacity: 0;
-      transition: transform .6s cubic-bezier(.34,1.56,.64,1) 1.1s, opacity .4s ease 1.1s;
+      transition: transform .6s cubic-bezier(.34, 1.56, .64, 1) 1.1s, opacity .4s ease 1.1s;
     }
+
     .unlocked .locker-inside span {
       transform: scale(1) rotate(-8deg);
       opacity: 1;
+    }
+
+    /* แมวตำรวจเฝ้าตู้ (ล้นมุมซ้ายบน) */
+    .cat-cop {
+      --cat: clamp(120px, 36vw, 170px);
+      position: absolute;
+      top: calc(var(--cat) * -0.42);
+      left: calc(var(--cat) * -0.32);
+      width: var(--cat);
+      height: auto;
+      z-index: 5;
+      pointer-events: none;
+      transform-origin: 50% 85%;
+      filter: drop-shadow(0 8px 10px rgba(90, 40, 60, .3));
+      animation: cat-pop .7s cubic-bezier(.34, 1.56, .64, 1) .6s both,
+        cat-bob 3s ease-in-out 1.3s infinite;
+    }
+
+    @keyframes cat-pop {
+      from {
+        opacity: 0;
+        transform: translate(30px, 40px) scale(.3) rotate(20deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(-10deg);
+      }
+    }
+
+    @keyframes cat-bob {
+
+      0%,
+      100% {
+        transform: rotate(-10deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(-6deg) translateY(-6px);
+      }
+    }
+
+    /* ใส่รหัสผิด: แมวส่ายหัว */
+    .cat-cop.nope {
+      animation: cat-nope .5s ease;
+    }
+
+    @keyframes cat-nope {
+
+      0%,
+      100% {
+        transform: rotate(-10deg);
+      }
+
+      25% {
+        transform: rotate(-22deg) scale(1.08);
+      }
+
+      50% {
+        transform: rotate(2deg) scale(1.08);
+      }
+
+      75% {
+        transform: rotate(-16deg);
+      }
+    }
+
+    /* ปลดล็อก: แมวกระโดดดีใจแล้วหลบออกไป */
+    .unlocked .cat-cop {
+      animation: cat-bye 1.2s ease-in .2s forwards;
+    }
+
+    @keyframes cat-bye {
+      0% {
+        transform: rotate(-10deg);
+        opacity: 1;
+      }
+
+      30% {
+        transform: translateY(-30px) rotate(-18deg) scale(1.1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-60px, 120px) rotate(-40deg) scale(.6);
+        opacity: 0;
+      }
     }
 
     /* ประตูตู้ */
@@ -100,28 +210,49 @@
       padding: 26px 24px 24px;
       border-radius: 16px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,.55), transparent 45%),
+        linear-gradient(135deg, rgba(255, 255, 255, .55), transparent 45%),
         linear-gradient(180deg, var(--metal-1), var(--metal-2));
       box-shadow:
         0 25px 50px rgba(90, 40, 60, .25),
-        inset 0 0 0 2px rgba(255,255,255,.6),
-        inset 0 -4px 0 rgba(0,0,0,.08);
+        inset 0 0 0 2px rgba(255, 255, 255, .6),
+        inset 0 -4px 0 rgba(0, 0, 0, .08);
       color: var(--metal-ink);
       text-align: center;
       transform-origin: left center;
-      transition: transform 1s cubic-bezier(.65,0,.35,1) .7s;
+      transition: transform 1s cubic-bezier(.65, 0, .35, 1) .7s;
       backface-visibility: hidden;
     }
+
     .unlocked .door {
       transform: rotateY(-110deg);
     }
-    .door.shake { animation: shake .5s ease; }
+
+    .door.shake {
+      animation: shake .5s ease;
+    }
+
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-10px); }
-      40% { transform: translateX(9px); }
-      60% { transform: translateX(-6px); }
-      80% { transform: translateX(4px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-10px);
+      }
+
+      40% {
+        transform: translateX(9px);
+      }
+
+      60% {
+        transform: translateX(-6px);
+      }
+
+      80% {
+        transform: translateX(4px);
+      }
     }
 
     /* ช่องระบายอากาศ */
@@ -129,9 +260,7 @@
       height: 34px;
       margin: 0 auto 18px;
       width: 70%;
-      background: repeating-linear-gradient(
-        180deg, #6c7783 0 4px, transparent 4px 10px
-      );
+      background: repeating-linear-gradient(180deg, #6c7783 0 4px, transparent 4px 10px);
       border-radius: 4px;
       opacity: .55;
     }
@@ -146,7 +275,7 @@
       margin-top: -32px;
       border-radius: 6px;
       background: linear-gradient(90deg, #7d8894, #c9d1da, #7d8894);
-      box-shadow: 0 2px 4px rgba(0,0,0,.25);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
     }
 
     .plate {
@@ -166,6 +295,7 @@
       color: var(--env-dark);
       margin-bottom: 6px;
     }
+
     .locker .sub {
       font-size: 15px;
       margin-bottom: 18px;
@@ -179,6 +309,7 @@
       height: 52px;
       margin: 34px auto 20px;
     }
+
     .shackle {
       position: absolute;
       left: 12px;
@@ -191,14 +322,16 @@
       transform-origin: 33px 100%;
       transition: transform .35s ease;
     }
+
     .lock-body {
       position: absolute;
       inset: 0;
       border-radius: 10px;
       background: linear-gradient(180deg, #f2b33d, #d98e04);
-      box-shadow: 0 4px 8px rgba(0,0,0,.25), inset 0 2px 0 rgba(255,255,255,.4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .25), inset 0 2px 0 rgba(255, 255, 255, .4);
       transition: background .4s ease, box-shadow .4s ease;
     }
+
     .lock-body::before {
       content: "";
       position: absolute;
@@ -210,6 +343,7 @@
       border-radius: 50%;
       background: #5a3b00;
     }
+
     .lock-body::after {
       content: "";
       position: absolute;
@@ -221,24 +355,52 @@
       border-radius: 0 0 3px 3px;
       background: #5a3b00;
     }
+
     .unlocked .shackle {
       animation: unlock-shackle .6s ease forwards;
     }
+
     @keyframes unlock-shackle {
-      0%   { transform: translateY(0); }
-      45%  { transform: translateY(-14px); }
-      100% { transform: translateY(-14px) rotateY(180deg); }
+      0% {
+        transform: translateY(0);
+      }
+
+      45% {
+        transform: translateY(-14px);
+      }
+
+      100% {
+        transform: translateY(-14px) rotateY(180deg);
+      }
     }
+
     .unlocked .lock-body {
       background: linear-gradient(180deg, #55e08f, #23a35a);
-      box-shadow: 0 0 22px rgba(46, 204, 113, .8), inset 0 2px 0 rgba(255,255,255,.4);
+      box-shadow: 0 0 22px rgba(46, 204, 113, .8), inset 0 2px 0 rgba(255, 255, 255, .4);
     }
-    .padlock.wiggle { animation: wiggle .5s ease; }
+
+    .padlock.wiggle {
+      animation: wiggle .5s ease;
+    }
+
     @keyframes wiggle {
-      0%, 100% { transform: rotate(0); }
-      25% { transform: rotate(-12deg); }
-      50% { transform: rotate(10deg); }
-      75% { transform: rotate(-6deg); }
+
+      0%,
+      100% {
+        transform: rotate(0);
+      }
+
+      25% {
+        transform: rotate(-12deg);
+      }
+
+      50% {
+        transform: rotate(10deg);
+      }
+
+      75% {
+        transform: rotate(-6deg);
+      }
     }
 
     /* ฟอร์ม */
@@ -247,6 +409,7 @@
       flex-direction: column;
       gap: 12px;
     }
+
     .pass-input {
       width: 100%;
       padding: 12px 14px;
@@ -259,16 +422,27 @@
       text-align: center;
       color: var(--metal-ink);
       outline: none;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,.08);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, .08);
       transition: border-color .2s, box-shadow .2s;
     }
-    .pass-input::placeholder { color: #b3bcc6; letter-spacing: 2px; }
+
+    .pass-input::placeholder {
+      color: #b3bcc6;
+      letter-spacing: 2px;
+    }
+
     .pass-input:focus {
       border-color: var(--env-light);
       box-shadow: 0 0 0 4px rgba(242, 107, 116, .25);
     }
-    .pass-input.error { border-color: var(--err); }
-    .pass-input.success { border-color: var(--ok); }
+
+    .pass-input.error {
+      border-color: var(--err);
+    }
+
+    .pass-input.success {
+      border-color: var(--ok);
+    }
 
     .unlock-btn {
       padding: 12px;
@@ -282,9 +456,16 @@
       box-shadow: 0 6px 14px rgba(201, 61, 72, .35);
       transition: transform .15s ease, box-shadow .15s ease;
     }
-    .unlock-btn:active { transform: translateY(2px) scale(.98); box-shadow: 0 3px 8px rgba(201, 61, 72, .35); }
+
+    .unlock-btn:active {
+      transform: translateY(2px) scale(.98);
+      box-shadow: 0 3px 8px rgba(201, 61, 72, .35);
+    }
+
     @media (hover: hover) {
-      .unlock-btn:hover { transform: translateY(-2px); }
+      .unlock-btn:hover {
+        transform: translateY(-2px);
+      }
     }
 
     .msg {
@@ -292,8 +473,15 @@
       margin-top: 10px;
       font-size: 15px;
     }
-    .msg.error { color: var(--err); }
-    .msg.success { color: #1e8c4c; }
+
+    .msg.error {
+      color: var(--err);
+    }
+
+    .msg.success {
+      color: #1e8c4c;
+    }
+
     .clue {
       font-size: 14px;
       color: var(--env-dark);
@@ -302,7 +490,11 @@
       overflow: hidden;
       transition: opacity .4s ease, max-height .4s ease;
     }
-    .clue.show { opacity: 1; max-height: 40px; }
+
+    .clue.show {
+      opacity: 1;
+      max-height: 40px;
+    }
 
     /* =========================================================
        Envelope (แสดงหลังปลดล็อก)
@@ -315,8 +507,9 @@
       opacity: 0;
       transform: scale(.85) translateY(30px);
       pointer-events: none;
-      transition: opacity .8s ease 1.9s, transform .9s cubic-bezier(.22,1,.36,1) 1.9s;
+      transition: opacity .8s ease 1.9s, transform .9s cubic-bezier(.22, 1, .36, 1) 1.9s;
     }
+
     .unlocked .stage {
       opacity: 1;
       transform: none;
@@ -330,17 +523,27 @@
       animation: blink 1.6s ease-in-out infinite;
       transition: opacity .4s;
     }
-    .open-state .hint { opacity: 0; }
+
+    .open-state .hint {
+      opacity: 0;
+    }
 
     @keyframes blink {
-      0%, 100% { opacity: .4; }
-      50% { opacity: 1; }
+
+      0%,
+      100% {
+        opacity: .4;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     .envelope-wrap {
       perspective: 1000px;
       /* เว้นที่ด้านบนไว้ให้จดหมายเลื่อนขึ้นมา */
-      padding-top: calc(var(--w) * 0.8);
+      padding-top: calc(var(--w) * 0.94);
     }
 
     .envelope {
@@ -352,11 +555,21 @@
       outline: none;
       user-select: none;
     }
-    .envelope.open { animation: none; }
+
+    .envelope.open {
+      animation: none;
+    }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-1deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
     }
 
     .back {
@@ -381,34 +594,86 @@
       padding: calc(var(--w) * 0.06) calc(var(--w) * 0.07);
       color: var(--ink);
       z-index: 2;
-      box-shadow: 0 2px 10px rgba(0,0,0,.12);
-      transition: transform .9s cubic-bezier(.22,1,.36,1) .5s, height .6s ease .5s;
-      background-image: repeating-linear-gradient(
-        transparent 0 calc(var(--line) - 1px), #f1dcc8 calc(var(--line) - 1px) var(--line)
-      );
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+      transition: transform .9s cubic-bezier(.22, 1, .36, 1) .5s, height .6s ease .5s;
+      background-image: repeating-linear-gradient(transparent 0 calc(var(--line) - 1px), #f1dcc8 calc(var(--line) - 1px) var(--line));
       background-position: 0 calc(var(--w) * 0.135);
     }
+
     .letter h2 {
       font-size: calc(var(--w) * 0.065);
       line-height: var(--line);
       color: var(--env);
       margin-bottom: calc(var(--w) * 0.015);
     }
+
     .letter p {
       font-size: calc(var(--w) * 0.047);
       line-height: var(--line);
       opacity: 0;
       transition: opacity .6s ease 1.2s;
     }
+
     .letter .sign {
       text-align: right;
     }
 
     .envelope.open .letter {
-      transform: translateY(calc(var(--w) * -0.55));
-      height: calc(var(--w) * 0.88);
+      transform: translateY(calc(var(--w) * -0.6));
+      height: calc(var(--w) * 0.96);
     }
-    .envelope.open .letter p { opacity: 1; }
+
+    .envelope.open .letter p {
+      opacity: 1;
+    }
+
+    /* รูปภาพแบบโพลารอยด์ในจดหมาย */
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: calc(var(--w) * 0.03);
+      margin-top: calc(var(--w) * 0.03);
+    }
+
+    .photo {
+      flex: 1;
+      max-width: calc(var(--w) * 0.24);
+      padding: calc(var(--w) * 0.012) calc(var(--w) * 0.012) calc(var(--w) * 0.04);
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 3px 8px rgba(90, 62, 54, .25);
+      opacity: 0;
+      transform: translateY(20px) scale(.6) rotate(0);
+      transition: opacity .4s ease, transform .6s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 2px;
+      background: #f3e6e8;
+    }
+
+    .envelope.open .photo {
+      opacity: 1;
+    }
+
+    .envelope.open .photo:nth-child(1) {
+      transform: rotate(-6deg);
+      transition-delay: 1.5s;
+    }
+
+    .envelope.open .photo:nth-child(2) {
+      transform: translateY(-4px) rotate(3deg);
+      transition-delay: 1.7s;
+    }
+
+    .envelope.open .photo:nth-child(3) {
+      transform: rotate(-2deg);
+      transition-delay: 1.9s;
+    }
 
     /* Front pocket (left, right, bottom triangles) */
     .pocket {
@@ -417,6 +682,7 @@
       z-index: 3;
       pointer-events: none;
     }
+
     .pocket::before,
     .pocket::after {
       content: "";
@@ -424,10 +690,12 @@
       inset: 0;
       border-radius: 6px;
     }
+
     .pocket::before {
       background: var(--env-light);
       clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
     }
+
     .pocket::after {
       background: var(--env);
       clip-path: polygon(0 100%, 50% 48%, 100% 100%);
@@ -445,8 +713,9 @@
       transform-origin: top center;
       z-index: 4;
       transition: transform .6s ease, z-index 0s linear .3s;
-      filter: drop-shadow(0 2px 2px rgba(0,0,0,.15));
+      filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .15));
     }
+
     .envelope.open .flap {
       transform: rotateX(180deg);
       z-index: 1;
@@ -463,7 +732,7 @@
       margin-left: calc(var(--size) / -2);
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #d33a46, var(--seal));
-      box-shadow: 0 3px 6px rgba(0,0,0,.3), inset 0 0 0 4px rgba(255,255,255,.12);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .3), inset 0 0 0 4px rgba(255, 255, 255, .12);
       display: grid;
       place-items: center;
       color: #ffd1d6;
@@ -471,13 +740,76 @@
       z-index: 5;
       transition: transform .4s ease, opacity .3s ease;
     }
+
     @media (hover: hover) {
-      .envelope:hover .seal { transform: scale(1.1); }
+      .envelope:hover .seal {
+        transform: scale(1.1);
+      }
     }
-    .envelope:focus-visible .seal { transform: scale(1.1); }
+
+    .envelope:focus-visible .seal {
+      transform: scale(1.1);
+    }
+
     .envelope.open .seal {
       transform: scale(0) rotate(180deg);
       opacity: 0;
+    }
+
+    /* แมวถือช่อดอกไม้ (ล้นมุมขวาบนของซอง) */
+    .cat-flower {
+      position: absolute;
+      top: calc(var(--w) * -0.3);
+      right: calc(var(--w) * -0.1);
+      width: calc(var(--w) * 0.32);
+      z-index: 6;
+      pointer-events: none;
+      transition: transform .8s cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    .cat-flower img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transform-origin: 50% 100%;
+      filter: drop-shadow(0 8px 10px rgba(168, 32, 43, .3));
+    }
+
+    .unlocked .cat-flower img {
+      animation: flower-pop .8s cubic-bezier(.34, 1.56, .64, 1) 2.4s both,
+        flower-sway 2.8s ease-in-out 3.2s infinite;
+    }
+
+    @keyframes flower-pop {
+      from {
+        opacity: 0;
+        transform: translate(-30px, 50px) scale(.3) rotate(-20deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(8deg);
+      }
+    }
+
+    @keyframes flower-sway {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: rotate(8deg);
+      }
+
+      50% {
+        opacity: 1;
+        transform: rotate(3deg) translateY(-5px);
+      }
+    }
+
+    /* เปิดซอง: แมวกระโดดลงมานั่งมุมขวาล่าง ไม่บังจดหมาย */
+    .envelope.open .cat-flower {
+      transform: translateY(calc(var(--w) * 0.42));
     }
 
     /* Floating hearts */
@@ -489,28 +821,45 @@
       animation: rise linear forwards;
       z-index: 30;
     }
+
     @keyframes rise {
-      0%   { transform: translateY(0) scale(.6) rotate(0); opacity: 0; }
-      10%  { opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.2) rotate(40deg); opacity: 0; }
+      0% {
+        transform: translateY(0) scale(.6) rotate(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.2) rotate(40deg);
+        opacity: 0;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .envelope, .hint { animation: none; }
+
+      .envelope,
+      .hint {
+        animation: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ===== Locker ===== -->
   <section class="locker-screen" aria-label="ตู้จดหมายล็อกอยู่">
     <div class="locker">
       <div class="locker-inside"><span>💌</span></div>
+      <img class="cat-cop" id="catCop" src="img/cat_cop.png" alt="แมวตำรวจเฝ้าตู้จดหมาย">
 
       <div class="door" id="door">
         <div class="handle"></div>
         <div class="vents"></div>
-        <div class="plate">MAILBOX · No.1</div>
+        <div class="plate">MAILBOX</div>
         <h1>ตู้จดหมายลับ</h1>
         <p class="sub">ใส่วันครบรอบของเราเพื่อเปิดตู้</p>
 
@@ -520,15 +869,8 @@
         </div>
 
         <form class="pass-form" id="passForm" autocomplete="off">
-          <input
-            class="pass-input"
-            id="passInput"
-            type="text"
-            inputmode="numeric"
-            placeholder="DD/MM/YYYY"
-            maxlength="10"
-            aria-label="วันครบรอบ รูปแบบ DD/MM/YYYY (ค.ศ.)"
-            required>
+          <input class="pass-input" id="passInput" type="text" inputmode="numeric" placeholder="DD/MM/YYYY"
+            maxlength="10" aria-label="วันครบรอบ รูปแบบ DD/MM/YYYY (ค.ศ.)" required>
           <button class="unlock-btn" type="submit">ปลดล็อก 🔑</button>
         </form>
 
@@ -544,15 +886,24 @@
       <div class="envelope" id="envelope" role="button" tabindex="-1" aria-label="เปิดซองจดหมาย">
         <div class="back"></div>
         <div class="letter">
-          <h2>ถึง คนพิเศษ 💌</h2>
-          <p>ขอบคุณที่อยู่ข้าง ๆ กันเสมอนะ<br>
-             ทุกวันที่มีเธอคือวันที่ดีที่สุด<br>
-             ขอให้วันนี้เป็นวันที่สดใสของเธอ ✨</p>
-          <p class="sign">— จากฉันเอง</p>
+          <h2>ถึง Ploy 💌</h2>
+          <p>
+            Happy 1 month anniversary<br>
+            ขอบคุณที่อยู่ข้าง ๆ กันเสมอนะ<br>
+            รักเธอนะ จุ๊บๆ 😘
+          </p>
+          <p class="sign">— จาก Toffy</p>
+          <!-- รูปตัวอย่าง: เปลี่ยน src เป็นไฟล์รูปของตัวเองได้ เช่น src="photo1.jpg" -->
+          <div class="photos">
+            <figure class="photo"><img src="img/pic_1.png" alt="รูปที่ 1"></figure>
+            <figure class="photo"><img src="img/pic_2.png" alt="รูปที่ 2"></figure>
+            <figure class="photo"><img src="img/pic_3.png" alt="รูปที่ 3"></figure>
+          </div>
         </div>
         <div class="pocket"></div>
         <div class="flap"></div>
         <div class="seal">♥</div>
+        <div class="cat-flower"><img src="img/cat_flower.png" alt="แมวถือช่อกุหลาบ"></div>
       </div>
     </div>
 
@@ -561,10 +912,11 @@
 
   <script>
     // 🔐 รหัสผ่าน: วันครบรอบ รูปแบบ DD/MM/YYYY (ปี ค.ศ.) — แก้ตรงนี้
-    const ANNIVERSARY = '14/02/2020';
+    const ANNIVERSARY = '24/09/2026';
 
     const door = document.getElementById('door');
     const padlock = document.getElementById('padlock');
+    const catCop = document.getElementById('catCop');
     const form = document.getElementById('passForm');
     const input = document.getElementById('passInput');
     const msg = document.getElementById('msg');
@@ -603,9 +955,11 @@
       // เล่นแอนิเมชันสั่นซ้ำได้ทุกครั้ง
       door.classList.remove('shake');
       padlock.classList.remove('wiggle');
+      catCop.classList.remove('nope');
       void door.offsetWidth;
       door.classList.add('shake');
       padlock.classList.add('wiggle');
+      catCop.classList.add('nope');
       if (navigator.vibrate) navigator.vibrate(150);
     }
 
@@ -652,4 +1006,5 @@
     });
   </script>
 </body>
+
 </html>
