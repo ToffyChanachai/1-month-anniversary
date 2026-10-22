@@ -23,12 +23,12 @@
       --err: #d63031;
 
       /* ความกว้างซอง: ย่อ/ขยายตามจอ ทั้งด้านกว้างและด้านสูง */
-      --w: min(86vw, 440px, calc((100vh - 110px) / 1.65));
+      --w: min(86vw, 440px, calc((100vh - 110px) / 1.95));
     }
 
     @supports (height: 100dvh) {
       :root {
-        --w: min(86vw, 440px, calc((100dvh - 110px) / 1.65));
+        --w: min(86vw, 440px, calc((100dvh - 110px) / 1.95));
       }
     }
 
@@ -543,7 +543,7 @@
     .envelope-wrap {
       perspective: 1000px;
       /* เว้นที่ด้านบนไว้ให้จดหมายเลื่อนขึ้นมา */
-      padding-top: calc(var(--w) * 0.94);
+      padding-top: calc(var(--w) * 1.18);
     }
 
     .envelope {
@@ -620,7 +620,7 @@
 
     .envelope.open .letter {
       transform: translateY(calc(var(--w) * -0.6));
-      height: calc(var(--w) * 0.96);
+      height: calc(var(--w) * 1.2);
     }
 
     .envelope.open .letter p {
@@ -628,16 +628,18 @@
     }
 
     /* รูปภาพแบบโพลารอยด์ในจดหมาย */
+    /* 3 รูปบน 2 รูปล่าง จัดกึ่งกลาง */
     .photos {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: calc(var(--w) * 0.03);
-      margin-top: calc(var(--w) * 0.03);
+      gap: calc(var(--w) * 0.025) calc(var(--w) * 0.03);
+      margin: calc(var(--w) * 0.03) auto 0;
+      max-width: calc(var(--w) * 0.67);
     }
 
     .photo {
-      flex: 1;
-      max-width: calc(var(--w) * 0.24);
+      flex: 0 0 calc(var(--w) * 0.2);
       padding: calc(var(--w) * 0.012) calc(var(--w) * 0.012) calc(var(--w) * 0.04);
       background: #fff;
       border-radius: 3px;
@@ -673,6 +675,16 @@
     .envelope.open .photo:nth-child(3) {
       transform: rotate(-2deg);
       transition-delay: 1.9s;
+    }
+
+    .envelope.open .photo:nth-child(4) {
+      transform: rotate(4deg);
+      transition-delay: 2.1s;
+    }
+
+    .envelope.open .photo:nth-child(5) {
+      transform: translateY(-3px) rotate(-4deg);
+      transition-delay: 2.3s;
     }
 
     /* Front pocket (left, right, bottom triangles) */
@@ -888,8 +900,8 @@
         <div class="letter">
           <h2>ถึง Ploy 💌</h2>
           <p>
-            Happy 1 month anniversary<br>
-            ขอบคุณที่อยู่ข้าง ๆ กันเสมอนะ<br>
+            HAPPY 1 MONTH ANNIVERSARY<br>
+            ขอบคุณที่อยู่ข้างๆ กันเสมอนะ<br>
             รักเธอนะ จุ๊บๆ 😘
           </p>
           <p class="sign">— จาก Toffy</p>
@@ -898,6 +910,8 @@
             <figure class="photo"><img src="img/pic_1.png" alt="รูปที่ 1"></figure>
             <figure class="photo"><img src="img/pic_2.png" alt="รูปที่ 2"></figure>
             <figure class="photo"><img src="img/pic_3.png" alt="รูปที่ 3"></figure>
+            <figure class="photo"><img src="img/pic_4.png" alt="รูปที่ 4"></figure>
+            <figure class="photo"><img src="img/pic_5.png" alt="รูปที่ 5"></figure>
           </div>
         </div>
         <div class="pocket"></div>
